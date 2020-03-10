@@ -93,9 +93,9 @@ The images after applying Hough Transform:
 <img src="images/hough_transform.JPG" width="75%" height="75%">
 
 ## Average and Extrapolate Line Segments
-In the next step we took the line segments as the output of `cv2.HoughLinesP()` function average and extrapolate them in order to draw two solid lines representing left and right lane lines
+In the next step we took the line segments as the output of `cv2.HoughLinesP()` function average and extrapolate them in order to draw two solid lines representing left and right lane lines.
 
-For that we updated the function `draw_lines` defined above and defined a new function called `draw_lines_extend` to include these functionalities
+To include these functionalities we updated the function `draw_lines` defined above and defined a new function called `draw_lines_extend`. This was done by calculating the positive and negative slope of each line and with a control statement separating each line in one of two categories: left line or right line. After that, the average line slope and end points of each lane line were calculated. This then allowed to draw two straigth lines on the image.
 
 The results of the new function is shown on the images below:
 <img src="images/draw_lines_extend.JPG" width="75%" height="75%">
@@ -109,7 +109,7 @@ As expected the function plot one line for each lane line detected, starting fro
 Both of these shortcomings could be life threatening and therefore this pipeline serves the purpose of showing the simplest lane line detection algorithm possible.
 
 ## Possible Improvements to the Pipeline
-There are many improvements that could be implemented for this pipeline. 
+There are many improvements that could be implemented for this pipeline:
 - For example, instead of working in RGB color space, the line detection could be improved by transforming the image from RGB color space to other color spaces such as HSV. This would allow to use one of the new H, S or V color channels and so improve the line detection in more challenging cases such as when the camera image exposed to too much light.
 - One aspect that is not taken into account is the curvature of the road. In the current implementation, the lane lines are approximated with a straight line which doesn't correspond the reality. The more the region of interest is extended, the more inaccurate the results are provided one is driving on a curvy road. The improvement would be to calculate the curvature of the road and plot the lane lines as a curve with appropriate radius.
 - One of the challenges in this implementation of the pipeline is to set up all parameters properly to ensure the algorithm works well on all camera images. Therefore a tool that would explore all possible parameter combinations and would rate each for its accuracy would be a very useful approach. Machine learning techniques is the way to perform this task and will be implemented in the near future.
